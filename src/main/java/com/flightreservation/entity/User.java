@@ -1,20 +1,14 @@
 package com.flightreservation.entity;
 
-public class User {
+import javax.persistence.Entity;
 
-	private int id;
+@Entity
+public class User extends AbstractEntity {
+
 	private String fristName;
 	private String lastName;
 	private String email;
 	private String Password;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getFristName() {
 		return fristName;

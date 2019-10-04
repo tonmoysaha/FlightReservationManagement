@@ -1,20 +1,16 @@
 package com.flightreservation.entity;
 
-public class Passenger {
-	private int id;
+import javax.persistence.Entity;
+
+@Entity
+public class Passenger extends AbstractEntity{
+	
 	private String fristName;
 	private String lastName;
 	private String middleName;
 	private String email;
 	private String phone;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getFristName() {
 		return fristName;
