@@ -7,6 +7,7 @@ public class User extends AbstractEntity {
 
 	private String fristName;
 	private String lastName;
+	private String userName;
 	private String email;
 	private String Password;
 
@@ -24,6 +25,14 @@ public class User extends AbstractEntity {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getEmail() {
