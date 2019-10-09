@@ -9,7 +9,7 @@ public class User extends AbstractEntity {
 	private String lastName;
 	private String userName;
 	private String email;
-	private String Password;
+	private String password;
 
 	public String getFristName() {
 		return fristName;
@@ -44,11 +44,11 @@ public class User extends AbstractEntity {
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 }

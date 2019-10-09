@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>RegestrationPage</title>
@@ -11,8 +12,16 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"
 	type="text/javascript"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"
-	type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<style type="text/css">
+.error {
+    color:red;
+}
+.valid {
+    color:green;
+}
+</style>
 
 </head>
 <body>
@@ -25,8 +34,10 @@
 		</div>
 		<hr />
 		<div style="margin-left: 25%;">
-			<form class="well form-horizontal col-xs-8" action="registerUser" method="post">
-
+			<form class="well form-horizontal col-xs-8" action="registerUser"
+				method="post" id="formvalidate">
+				<div th:if="${userExist}" style="color: red;" class="alert alert-danger">Email
+					already Exist</div>
 				<fieldset>
 					<div class="form-group">
 						<label class="col-md-4 control-label">First Name</label>
@@ -79,8 +90,8 @@
 						<div class="col-md-8 inputGroupContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-star"></i></span><input id="Password"
-									name="Password" placeholder="Enter Password"
+									class="glyphicon glyphicon-lock"></i></span><input 
+									name="password" id="password" placeholder="Enter Password"
 									class="form-control" value="" type="password">
 							</div>
 						</div>
@@ -91,8 +102,8 @@
 						<div class="col-md-8 inputGroupContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-star"></i></span><input
-									id="confirmPassword" name="confirmPassword"
+									class="glyphicon glyphicon-lock"></i></span><input
+									 name="confirmPassword"
 									placeholder="Confirm Password" class="form-control" value=""
 									type="password">
 							</div>
@@ -110,4 +121,40 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+   
+    $(document).ready(function(){
+    	$("#formvalidate").validate({
+    		rules: {
+    			email: {
+    				required: true,
+    				email: true
+    			},
+    			password: "required",
+    				   confirmPassword: {
+    						required: true,
+    						equalTo: "#password"
+    						
+    					},
+    					
+    					
+    		},
+    		messages: {
+    			email: {
+    				required: "please enter your email",
+    				email: "please enter a valid email address"
+    			},
+    			
+    			password: "please enter your password",
+    			
+    			confirmPassword: {
+    				required: "please Confirm Password",
+    				equalTo: "Confirm Password does not match"
+    			},
+  
+    		}
+    	});
+    	
+    });
+    </script>
 </html>
