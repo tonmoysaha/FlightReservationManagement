@@ -4,6 +4,7 @@ public class ReservationRequest {
 
 	private Long flightId;
 	private String passengerfristName;
+	private String passengermiddleName;
 	private String passengerlastName;
 	private String passengerEmail;
 	private String passengerphone;
@@ -11,6 +12,7 @@ public class ReservationRequest {
 	private String cardNo;
 	private String expirationDate;
 	private String securityCode;
+
 
 	public Long getFlightId() {
 		return flightId;
@@ -26,6 +28,15 @@ public class ReservationRequest {
 
 	public void setPassengerfristName(String passengerfristName) {
 		this.passengerfristName = passengerfristName;
+	}
+	
+
+	public String getPassengermiddleName() {
+		return passengermiddleName;
+	}
+
+	public void setPassengermiddleName(String passengermiddleName) {
+		this.passengermiddleName = passengermiddleName;
 	}
 
 	public String getPassengerlastName() {
