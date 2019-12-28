@@ -25,7 +25,7 @@ public class ReservationRestController {
 	public Reservation updateReservation(@RequestBody ReservationUpdateRequest request) {
 		Reservation reservation = reservationRepository.findById(request.getId()).orElse(null);
 		reservation.setNumOfBags(request.getNumOfBags());
-		reservation.setCheckedIn(request.getCheckdIn());
+		reservation.setCheckedIn(request.getCheckedIn());
 		
 		Reservation updatedReservation = reservationRepository.save(reservation);
 		
