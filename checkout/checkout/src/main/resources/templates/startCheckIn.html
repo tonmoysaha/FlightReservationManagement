@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>StartCheckIn</title>
 </head>
 <body>
 <form action="startCheckIn" method="post">
-Enter The ReservationId: <input type="text" name="reservationId"/>
+Enter The ReservationId: <input type="text" th:name="reservationId"/>
 <input type="submit" value="Sart Check">
 </form>
 </body>

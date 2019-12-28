@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>ReservationDetails</title>
@@ -35,7 +36,8 @@
 
 	<form action="completeCheckIn" method="post">
 		Enter The Number of Bags:<input type="text" name="numOfBags">
-		<input type="hidden" value="${reservation.id}" name="reservationId"> <input
+		<input type="hidden" th:value="${reservation.id}" name="reservationId"/>
+		 <input
 			type="submit" value="Check In">
 	</form>
 
