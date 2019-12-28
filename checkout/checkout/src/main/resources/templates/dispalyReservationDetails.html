@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ReservationDetails</title>
+</head>
+<body>
+	<h2>Flight Details</h2>
+	Operating Airlines:
+	<strong th:text="${reservation.flight.operatingAirlines}"></strong>
+	<br> Departure City:
+	<strong th:text="${reservation.flight.departureCity}"></strong>
+	<br> Departure City:
+	<strong th:text="${reservation.flight.departureCity}"></strong>
+	<br> Arrival City:
+	<strong th:text="${reservation.flight.arrivalCity}"></strong>
+	<br> Date Of Departure:
+	<strong th:text="${reservation.flight.dateOfDeparture}"></strong>
+	<br> Estimated Departure Time:
+	<strong th:text="${reservation.flight.estimatedDepartureTime}"></strong>
+	<br>
+
+	<h2>Passenger Details</h2>
+	First Name:
+	<strong th:text="${reservation.passenger.fristName}"></strong>
+	<br> Last Name:
+	<strong th:text="${reservation.passenger.lastName}"></strong>
+	<br> Email:
+	<strong th:text="${reservation.passenger.email}"></strong>
+	<br> Phone:
+	<strong th:text="${reservation.passenger.phone}"></strong>
+	<br/>
+	<br>
+	<br>
+
+	<form action="completeCheckIn" method="post">
+		Enter The Number of Bags:<input type="text" name="numOfBags">
+		<input type="hidden" value="${reservation.id}" name="reservationId"> <input
+			type="submit" value="Check In">
+	</form>
+
+</body>
+</html>

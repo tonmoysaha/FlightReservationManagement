@@ -16,7 +16,7 @@ public class FlightCheckinController {
 	@Autowired
 	private ReservationRestClient reservationRestClient;
 	
-	@RequestMapping("/startCheckIn")
+	@RequestMapping("/")
 	public String showStartCheckinPage() {
 		return "startCheckIn";
 
