@@ -1,14 +1,10 @@
-package com.flightcheckout.entity;
+package com.flightcheckout.dto;
 
-public class Reservation {
+public class ReservationUpdateRequest {
 
 	private Long id;
 	private Boolean checkedIn;
 	private int numOfBags;
-
-	private Passenger passenger;
-
-	private Flight flight;
 
 	public Long getId() {
 		return id;
@@ -32,22 +28,6 @@ public class Reservation {
 
 	public void setNumOfBags(int numOfBags) {
 		this.numOfBags = numOfBags;
-	}
-
-	public Passenger getPassenger() {
-		return passenger;
-	}
-
-	public void setPassenger(Passenger passenger) {
-		this.passenger = passenger;
-	}
-
-	public Flight getFlight() {
-		return flight;
-	}
-
-	public void setFlight(Flight flight) {
-		this.flight = flight;
 	}
 
 }

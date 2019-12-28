@@ -1,14 +1,21 @@
 package com.flightcheckout.entity;
 
-
 public class Passenger {
-	
+
+	private Long id;
 	private String fristName;
 	private String lastName;
 	private String middleName;
 	private String email;
 	private String phone;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getFristName() {
 		return fristName;
