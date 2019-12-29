@@ -1,4 +1,4 @@
-package com.flightcheckout.utill;
+package com.flightreservation.utill;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,10 +9,9 @@ import javax.swing.table.TableColumn;
 
 import org.springframework.stereotype.Component;
 
-import com.flightcheckout.entity.Reservation;
+import com.flightreservation.entity.Reservation;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
