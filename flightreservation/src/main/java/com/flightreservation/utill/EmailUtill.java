@@ -5,18 +5,26 @@ import java.io.File;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
+import com.flightreservation.serviceImpl.ReservationServiceImpl;
+
 @Component
 public class EmailUtill {
+	
+	private final static Logger Logger = LoggerFactory.getLogger(EmailUtill.class);
 	
 	@Autowired
 	private JavaMailSender sender;
 
 	public void mailUtinary(String addressTo, String filePath) throws MessagingException {
+		
+		Logger.info("inside mailUtinary()");
 		
 		MimeMessage message = sender.createMimeMessage();
 		

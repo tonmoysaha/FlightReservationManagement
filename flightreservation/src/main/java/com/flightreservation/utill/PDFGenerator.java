@@ -7,9 +7,12 @@ import java.io.OutputStream;
 
 import javax.swing.table.TableColumn;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.flightreservation.entity.Reservation;
+import com.flightreservation.serviceImpl.ReservationServiceImpl;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Phrase;
@@ -20,7 +23,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 @Component
 public class PDFGenerator {
 	
+	private static final  Logger Logger = LoggerFactory.getLogger(ReservationServiceImpl.class);
+	
 	public void generateItinerary(Reservation reservation, String filePath) throws FileNotFoundException, DocumentException {
+		
+		Logger.info("inside generateItinerary()");
 		
 		Document document = new Document();
 		
@@ -35,6 +42,7 @@ public class PDFGenerator {
 
 	private PdfPTable generateTable(Reservation reservation) {
 		// TODO Auto-generated method stub
+		
 		PdfPTable table = new PdfPTable(2);
 		PdfPCell cell;
 		

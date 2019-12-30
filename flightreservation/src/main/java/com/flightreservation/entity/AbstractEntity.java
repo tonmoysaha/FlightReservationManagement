@@ -20,4 +20,11 @@ public class AbstractEntity {
 		this.id = id;
 	}
 
+	@Override
+	public String toString() {
+		return "AbstractEntity [id=" + id + "]";
+	}
+	
+	
+
 }

@@ -4,9 +4,12 @@ import java.io.FileNotFoundException;
 
 import javax.mail.MessagingException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.flightreservation.controller.FlightController;
 import com.flightreservation.dto.ReservationRequest;
 import com.flightreservation.entity.Flight;
 import com.flightreservation.entity.Passenger;
@@ -21,6 +24,8 @@ import com.itextpdf.text.DocumentException;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
+	
+	private static final  Logger Logger = LoggerFactory.getLogger(ReservationServiceImpl.class);
 	
 	@Autowired
 	private FlightRepository flightRepository;
@@ -43,7 +48,11 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		//make pay
 		
+		Logger.info("inside BookFlight()");
+		
 		Flight flight = flightRepository.findById(request.getFlightId()).orElse(null);
+		Logger.info("Flight Found: "+ flight);
+
 		
 		Passenger passenger= new Passenger();
 		passenger.setFristName(request.getPassengerfristName());
@@ -53,6 +62,7 @@ public class ReservationServiceImpl implements ReservationService {
 		passenger.setPhone(request.getPassengerphone());
 		
 		Passenger savedPassenger = passengerRepository.save(passenger);
+		Logger.info("Passenger save: "+ savedPassenger);
 		
 		Reservation reservation = new Reservation();
 		reservation.setCheckedIn(false);
@@ -60,21 +70,24 @@ public class ReservationServiceImpl implements ReservationService {
 		reservation.setPassenger(savedPassenger);
 		
 		Reservation savedReservation = reservationRepository.save(reservation);
+		Logger.info("save the reservation: "+ savedReservation);
 		
 		String filePath = "E:/reservations/reservation"+ savedPassenger.getId()+".pdf";
-		
+		Logger.info("generating  the Iteniary ");
 			try {
 				pDFGenerator.generateItinerary(savedReservation, filePath);
+				Logger.info("sending  the Iteniary");
 			} catch (FileNotFoundException | DocumentException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.error("Problem in generating itenearay"+e);
 			}
 			
 			try {
 				emailUtill.mailUtinary(passenger.getEmail(), filePath);
+				Logger.info("sending  the email ");
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.error("Exception Sending iteniary: "+ e);
 			}
 		
 		

@@ -50,5 +50,11 @@ public class User extends AbstractEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Override
+	public String toString() {
+		return "User [fristName=" + fristName + ", lastName=" + lastName + ", userName=" + userName + ", email=" + email
+				+ ", password=" + password + "]";
+	}
 
 }

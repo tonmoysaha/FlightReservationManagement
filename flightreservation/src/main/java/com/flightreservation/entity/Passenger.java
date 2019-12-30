@@ -52,4 +52,12 @@ public class Passenger extends AbstractEntity{
 		this.phone = phone;
 	}
 
+	@Override
+	public String toString() {
+		return "Passenger [fristName=" + fristName + ", lastName=" + lastName + ", middleName=" + middleName
+				+ ", email=" + email + ", phone=" + phone + "]";
+	}
+	
+	
+
 }
