@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.flightreservation.controller.FlightController;
 import com.flightreservation.dto.ReservationRequest;
 import com.flightreservation.entity.Flight;
 import com.flightreservation.entity.Passenger;
