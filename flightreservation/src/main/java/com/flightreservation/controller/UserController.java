@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.flightreservation.entity.User;
 import com.flightreservation.repository.UserRepository;
+import com.flightreservation.service.SecurityService;
 
 @Controller
 public class UserController { 
@@ -22,6 +23,9 @@ public class UserController {
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
+	
+	@Autowired
+	private SecurityService securityService;
 	
 	private static final  Logger Logger = LoggerFactory.getLogger(UserController.class);
 
@@ -36,8 +40,9 @@ public class UserController {
 
 		Logger.info("login user " + email);
 		
-		User user = userRepository.findByEmail(email);
-		if (user.getPassword().equals(password)) {
+		boolean loginResponse = securityService.login(email, password);
+		
+		if (loginResponse) {
 			return "index";
 		} else {
 			map.addAttribute("error", true);
@@ -46,7 +51,7 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value = "/regUser" , method = RequestMethod.GET)
+	@RequestMapping(value = "/registerUser" , method = RequestMethod.GET)
 	public String regestrationPage(Model model) {
 		Logger.info("INSIDE regestrationPage");
 		User user = new User();
