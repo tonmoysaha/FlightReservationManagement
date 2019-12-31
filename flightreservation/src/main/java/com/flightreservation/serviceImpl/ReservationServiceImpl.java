@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.flightreservation.dto.ReservationRequest;
 import com.flightreservation.entity.Flight;
@@ -23,6 +24,9 @@ import com.itextpdf.text.DocumentException;
 @Service
 public class ReservationServiceImpl implements ReservationService {
 	
+	@Value("${com.flightreservation.pdf.generatorlocation}")
+	private  String Itenearary_DIR = "E:/reservations/reservation";
+
 	private static final  Logger Logger = LoggerFactory.getLogger(ReservationServiceImpl.class);
 	
 	@Autowired
@@ -70,7 +74,7 @@ public class ReservationServiceImpl implements ReservationService {
 		Reservation savedReservation = reservationRepository.save(reservation);
 		Logger.info("save the reservation: "+ savedReservation);
 		
-		String filePath = "E:/reservations/reservation"+ savedPassenger.getId()+".pdf";
+		String filePath = Itenearary_DIR + savedPassenger.getId()+".pdf";
 		Logger.info("generating  the Iteniary ");
 			try {
 				pDFGenerator.generateItinerary(savedReservation, filePath);

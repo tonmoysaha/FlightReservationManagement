@@ -3,6 +3,7 @@ package com.flightreservation.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,9 +16,12 @@ import com.flightreservation.entity.User;
 import com.flightreservation.repository.UserRepository;
 
 @Controller
-public class UserController {
+public class UserController { 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	private static final  Logger Logger = LoggerFactory.getLogger(UserController.class);
 
@@ -62,6 +66,7 @@ public class UserController {
 			return "regPage";
 		}
 		Logger.info("regestrationUser save Successfully"+user);
+		user.setPassword(encoder.encode(user.getPassword()));
 		userRepository.save(user);
 		return "login";
 
