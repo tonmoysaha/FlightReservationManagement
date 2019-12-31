@@ -38,4 +38,10 @@ public class FlightController {
 		return "displayFilghts";
 
 	}
+	
+	@RequestMapping("/admin/showaddflight")
+	public String showAddFlightPage() {
+		return "showAddFlightPage";
+		
+	}
 }

@@ -1,6 +1,11 @@
 package com.flightreservation.entity;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class User extends AbstractEntity {
@@ -10,6 +15,10 @@ public class User extends AbstractEntity {
 	private String userName;
 	private String email;
 	private String password;
+	
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name= "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
 
 	public String getFristName() {
 		return fristName;
@@ -51,6 +60,15 @@ public class User extends AbstractEntity {
 		this.password = password;
 	}
 	
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 	@Override
 	public String toString() {
 		return "User [fristName=" + fristName + ", lastName=" + lastName + ", userName=" + userName + ", email=" + email
