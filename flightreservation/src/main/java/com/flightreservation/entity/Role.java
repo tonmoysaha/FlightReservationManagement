@@ -4,7 +4,9 @@ import java.util.Set;
 
 import javax.persistence.ManyToMany;
 
-public class Role extends AbstractEntity{
+import org.springframework.security.core.GrantedAuthority;
+
+public class Role extends AbstractEntity implements GrantedAuthority{
 
 	private String roleName;
 	
@@ -25,6 +27,12 @@ public class Role extends AbstractEntity{
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	@Override
+	public String getAuthority() {
+		// TODO Auto-generated method stub
+		return roleName;
 	}
 	
 	
