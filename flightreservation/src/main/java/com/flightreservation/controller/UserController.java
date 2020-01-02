@@ -1,5 +1,8 @@
 package com.flightreservation.controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +19,17 @@ import com.flightreservation.entity.Role;
 import com.flightreservation.entity.User;
 import com.flightreservation.repository.UserRepository;
 import com.flightreservation.service.SecurityService;
+import com.flightreservation.service.UserService;
 
 @Controller
 public class UserController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -32,6 +40,12 @@ public class UserController {
 	private static final Logger Logger = LoggerFactory.getLogger(UserController.class);
 
 	@RequestMapping("/")
+	public String home(Model model) {
+		Logger.info("loginPage");
+		return "index";
+	}
+	
+	@RequestMapping("/login")
 	public String loginPage(Model model) {
 		Logger.info("loginPage");
 		return "login";
@@ -46,10 +60,10 @@ public class UserController {
 		
 		if (loginResponse) {
 			Logger.info("login successfully");
-			return "index";
+			return "home";
 		} else {
 			map.addAttribute("error", true);
-			return "login";
+			return "redirect:/login";
 		}
 
 	}
@@ -64,17 +78,24 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-	public String regestrationUser(@RequestParam("email") String email, @ModelAttribute("user") User user,
+	public String regestrationUser(@ModelAttribute("user") User user,
 			ModelMap map) {
-        
-		User userExist = userRepository.findByEmail(email);
+		
+		User userExist = userRepository.findByEmail(user.getEmail());
+      
 		Logger.info("regestrationUser already Exist: " + userExist);
 		if (userExist != null) {
 			map.addAttribute("userExist", true);
+			map.addAttribute("msg", "User already Exist "+ user.getEmail()+"with this email Id");
 			return "regPage";
 		}
 		user.setPassword(encoder.encode(user.getPassword()));
-		userRepository.save(user);
+		Role role = new Role();
+		role.setRoleId((long) 2);
+		role.setRoleName("USER");
+		Set<Role> roles = new HashSet<Role>();
+		roles.add(role);
+		userService.save(user, roles);
 		Logger.info("regestrationUser save Successfully" + user);
 		return "login";
 

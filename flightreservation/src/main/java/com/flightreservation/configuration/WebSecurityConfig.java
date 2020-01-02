@@ -14,8 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private static final String[] PUBLIC_URLS = {"/", "/login", "/registerUser", "/findFlights", "vendor/**", "/index",
-			"css/**", "/image/**" };
+	private static final String[] PUBLIC_URLS = {"/", "/login", "/registerUser", "/findFlights", "/vendor/**", "/index",
+			"/css/**", "/image/**" };
 
 	private static final String SALT = "salt";
 
