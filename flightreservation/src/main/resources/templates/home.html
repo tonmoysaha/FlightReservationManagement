@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="ISO-8859-1">
 
@@ -29,11 +31,11 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#findFlights">Find Flights</a></li>
+						href="#findFlights" sec:authorize="hasRole('USER')">Find Flights</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">About</a></li>
+						href="/admin/showaddflight"  sec:authorize="hasRole('ADMIN')">Add Flights</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">Services</a></li>
+						href="#about">ABOUT</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#contact">Contact</a></li>
 				</ul>
@@ -50,7 +52,7 @@
 		</div>
 	</header>
 <!-- Find Flights -->
-	<section id="findFlights" style="background-color: gray;">
+	<section id="findFlights" style="background-color: gray;" sec:authorize="hasRole('USER')">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 mx-auto">

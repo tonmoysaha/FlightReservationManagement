@@ -36,9 +36,10 @@ public class SecurityServiceImpl implements SecurityService {
 		
 		boolean authenticated = token.isAuthenticated();
 		
-		Logger.info("status" +authenticated);
+		
 		
 		if (authenticated) {
+			Logger.info("status true");
 			SecurityContextHolder.getContext().setAuthentication(token);
 		}
 		
