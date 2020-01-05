@@ -1,5 +1,6 @@
 package com.flightreservation.entity;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,8 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
-public class User extends AbstractEntity {
+public class User extends AbstractEntity implements UserDetails {
 
 	private String fristName;
 	private String lastName;
@@ -74,6 +78,44 @@ public class User extends AbstractEntity {
 	public String toString() {
 		return "User [fristName=" + fristName + ", lastName=" + lastName + ", userName=" + userName + ", email=" + email
 				+ ", password=" + password + "]";
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+			authorities.addAll(getRoles());
+		return authorities;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return userName;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

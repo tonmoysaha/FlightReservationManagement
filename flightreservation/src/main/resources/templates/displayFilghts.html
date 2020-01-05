@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Flights</title>
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
+
+<head th:replace="common/header :: common-header" />
+
 <body>
+	<div th:replace="common/header :: navbar"></div>
 	<table class="table table-dark">
 		<thead>
 			<tr>
@@ -24,12 +22,14 @@
 				<td th:text="${flight.operatingAirlines}"></td>
 				<td th:text="${flight.departureCity}"></td>
 				<td th:text="${flight.arrivalCity}"></td>
-				<td th:text = ${flight.estimatedDepartureTime}></td>
+				<td th:text=${flight.estimatedDepartureTime}></td>
 				<td><a
 					th:href="@{/showcompleteReservation(flightId=${flight.id})}">select</a></td>
 			</tr>
 
 		</tbody>
 	</table>
+
+	<footer th:replace="common/footer :: common-footer"></footer>
 </body>
 </html>

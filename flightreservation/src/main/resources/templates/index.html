@@ -1,73 +1,55 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+<head th:replace="common/header :: common-header" />
 
-<title>FlightReservation</title>
-
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom styles for this template -->
-<link href="css/scrolling-nav.css" rel="stylesheet">
-
-
-</head>
-
-<body id="page-top">
-	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-		id="mainNav">
-		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="/">Flight
-				Reservation</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">About</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">Services</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="login">sign in / signUp</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
+<body>
+	<div th:replace="common/header :: navbar"></div>
 	<header class="bg-primary text-white"
 		style="background-image: url('image/flight.jpg');">
 		<div class="container text-center">
 			<h1>Welcome Flight Reservation</h1>
-			<p class="lead">Search and compare hundreds of travel sites at
-				once</p>
+			<p class="lead">Search your flight for your destination place</p>
 		</div>
 	</header>
-
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
+	<!-- Find Flights -->
+	<section id="findFlights" style="background-color: gray;"
+		sec:authorize="hasRole('USER')">
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Flight
-				Reservation 2019</p>
+			<div class="row">
+				<div class="col-lg-10 mx-auto">
+					<h2>Find Flights</h2>
+					<form action="findFlights" method="post">
+						<div class="row" style="margin-top: 10%; margin-left: 25px;">
+
+							<div class="col-xs-2">
+								<b><label for="from">From: </label></b> <input type="text"
+									name="form" />
+							</div>
+
+							&nbsp;&nbsp;
+							<div class="col-xs-2">
+								<b><label for="to">To: </label></b> <input type="text" name="to" />
+							</div>
+							&nbsp;&nbsp;
+							<div class="col-xs-2">
+								<b><label for="to">Departure Date: </label></b> <input
+									type="text" name="departureDate" />
+							</div>
+
+							<div class="col-xs-2">
+								<label></label> <input type="submit"
+									style="color: green; font-weight: bold;" value="submit" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-		<!-- /.container -->
-	</footer>
-
-	<!-- Bootstrap core JavaScript -->
-	<script src="/vendor/jquery/jquery.min.js"></script>
-	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Plugin JavaScript -->
-	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom JavaScript for this theme -->
-	<script src="js/scrolling-nav.js"></script>
-
+	</section>
+<footer th:replace="common/footer :: common-footer" style="margin-top: 2%;"></footer>
 </body>
 
 </html>

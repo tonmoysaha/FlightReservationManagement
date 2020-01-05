@@ -40,7 +40,7 @@ public class FlightreservationApplication implements CommandLineRunner{
 	  
 		Role role = new Role();
 		role.setRoleId((long) 1);
-		role.setRoleName("ADMIN");
+		role.setRoleName("ROLE_ADMIN");
 		
 		Set<Role> roles = new HashSet<>();
 		roles.add(role);

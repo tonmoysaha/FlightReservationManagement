@@ -41,7 +41,7 @@ public class UserController {
 
 	@RequestMapping("/")
 	public String home(Model model) {
-		Logger.info("loginPage");
+		Logger.info("index");
 		return "index";
 	}
 	
@@ -60,7 +60,7 @@ public class UserController {
 		
 		if (loginResponse) {
 			Logger.info("login successfully");
-			return "home";
+			return "index";
 		} else {
 			map.addAttribute("error", true);
 			return "redirect:/login";
@@ -92,7 +92,7 @@ public class UserController {
 		user.setPassword(encoder.encode(user.getPassword()));
 		Role role = new Role();
 		role.setRoleId((long) 2);
-		role.setRoleName("USER");
+		role.setRoleName("ROLE_USER");
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(role);
 		userService.save(user, roles);

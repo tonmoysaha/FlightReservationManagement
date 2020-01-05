@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private static final String[] PUBLIC_URLS = {"/", "/login", "/registerUser", "/findFlights", "/vendor/**", "/index",
-			"/css/**", "/image/**", "/reservations/**" };
+			"/css/**", "/image/**", "/reservations/**" , "/js/**"};
 
 	private static final String SALT = "salt";
 
@@ -31,8 +31,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(PUBLIC_URLS).permitAll().antMatchers("/admin/**").hasAnyAuthority("ADMIN")
-				.anyRequest().authenticated().and().csrf().disable();
+		http.authorizeRequests().antMatchers(PUBLIC_URLS).permitAll().anyRequest().authenticated();
+		
+		http.csrf().disable().cors().disable();
 	}
 
 }
