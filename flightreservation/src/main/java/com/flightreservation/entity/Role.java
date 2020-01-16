@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -16,7 +17,7 @@ public class Role implements GrantedAuthority{
 
 	private String roleName;
 	
-	@ManyToMany(mappedBy = "roles")
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
 	private Set<User> users = new HashSet<User>();
 	
 

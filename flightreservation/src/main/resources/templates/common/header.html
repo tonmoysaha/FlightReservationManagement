@@ -52,7 +52,9 @@
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
 							sec:authorize="isAnonymous()" href="#about">ABOUT</a></li>
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							sec:authorize="isAnonymous()" href="login">Sign/SignUp</a></li>
+							sec:authorize="isAnonymous()" th:href="@{/login}">Sign/SignUp</a></li>
+						<li class="nav-item"><a class="nav-link js-scroll-trigger"
+							sec:authorize="isAuthenticated()" th:href="@{/logout}">logout</a></li>
 					</ul>
 				</div>
 			</div>
