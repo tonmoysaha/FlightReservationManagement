@@ -34,8 +34,7 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
-	@Autowired
-	private SecurityService securityService;
+
 
 	private static final Logger Logger = LoggerFactory.getLogger(UserController.class);
 
@@ -51,22 +50,7 @@ public class UserController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestParam("email") String email, @RequestParam("password") String password, Model map) {
 
-		Logger.info("login user " + email);
-
-		boolean loginResponse = securityService.login(email, password);
-		
-		if (loginResponse) {
-			Logger.info("login successfully");
-			return "index";
-		} else {
-			map.addAttribute("error", true);
-			return "redirect:/login";
-		}
-
-	}
 
 	@RequestMapping(value = "/registerUser", method = RequestMethod.GET)
 	public String regestrationPage(Model model) {
