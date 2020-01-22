@@ -86,3 +86,16 @@ section {
 .colors {
 	color: white;
 }
+
+.login-title {
+	color: blue;
+	text-decoration:underline;
+	font-style: italic;
+	font-weight: bold;
+}
+.flight_form {
+	margin-left: 18%;
+}
+.center-button {
+	margin-left: 60px;
+}

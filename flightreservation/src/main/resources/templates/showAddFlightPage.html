@@ -1,9 +1,101 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:replace="common/header :: common-header" />
 
 <body>
 	<div th:replace="common/header :: navbar"></div>
-	<h1>Add Flights</h1>
+	<div class="container" style="padding: 5%;">
+		<div class="text-center" style="padding: 3%;">
+			<h1 class="login-title">Flight Registration panel</h1>
+		</div>
+		<div class="flight_form" style="width: 90%;">
+
+			<div class="form-group">
+				<div class="row">
+					<label class="col-sm-2 ">Flight Number</label>
+
+					<div class="col-sm-6">
+						<input name="flightNumber" class="form-control"
+							required="required" />
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div class="row">
+					<label class="col-sm-2 control-label">Operating Airlines</label>
+
+					<div class="col-sm-6">
+						<input name="operatingAirlines" class="form-control"
+							required="required" />
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="row">
+					<label class="col-sm-2 control-label">Departure City</label>
+
+					<div class="col-sm-6">
+						<input name="departureCity" class="form-control"
+							required="required" />
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="row">
+					<label class="col-sm-2 control-label">Arrival City</label>
+
+					<div class="col-sm-6">
+						<input name="arrivalCity" class="form-control" required="required" />
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div class="row">
+					<label class="col-sm-2 control-label">Date Of Departure</label>
+
+					<div class="col-sm-6">
+						<input name="dateOfDeparture" autocomplete="off"
+							class="form-control datepicker" required="required" />
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group dates">
+				<div class="row">
+					<label class="col-sm-2 control-label">Estimated Departure
+						Time</label>
+
+					<div class="col-sm-6 ">
+						<input name="estimatedDepartureTime" autocomplete="off"
+							class="form-control datepicker" required="required" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row  center-button mt-2">
+				<div class="col-2">
+					<a href="/add"> <input type="button" class="btn btn-primary btn-md"
+						value="Add Flight" name="save" /></a>
+				</div>
+
+				<div class="col-2">
+					<a th:href="@{/}" class="btn btn-primary btn-md">cancel</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
 </body>
 </html>

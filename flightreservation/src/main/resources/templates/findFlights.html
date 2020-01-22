@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="common/header :: common-header" />
+
+<body>
+	<div th:replace="common/header :: navbar"></div>
+	<section id="findFlights" style="background-color: gray; height: 200%;">
+		<div class="container" style="padding: 5%;">
+			<div class="row">
+				<div class="col-lg-12 mx-auto">
+					<h2>Find Flights</h2>
+					<form th:action="@{/findFlights}" method="post">
+						<div class="row" style="margin-top: 10%; margin-left: 25px;">
+
+							<div class="col-xs-2">
+								<b><label for="from">From: </label></b> <input type="text"
+									name="form" />
+							</div>
+
+							&nbsp;&nbsp;
+							<div class="col-xs-2">
+								<b><label for="to">To: </label></b> <input type="text" name="to" />
+							</div>
+							&nbsp;&nbsp;
+							<div class="col-xs-2">
+								<b><label for="to">Departure Date: </label></b> <input
+									name="dateOfDeparture" autocomplete="off"
+									class="form-control datepicker" required="required" />
+
+							</div>
+
+							<div class="col-xs-2">
+								<label></label> <input type="submit"
+									style="color: green; font-weight: bold;" value="submit" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

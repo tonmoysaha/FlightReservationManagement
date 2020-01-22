@@ -1,4 +1,4 @@
-(function($) {
+(function ( $ ) { 
 	"use strict"; // Start of use strict
 
 	// Smooth scrolling using jQuery easing
@@ -30,6 +30,40 @@
 		offset : 56
 	});
 
-})(jQuery); // End of use strict
+}( jQuery ));
 
 
+
+$(document).ready(function(){
+	$("#formvalidate").validate({
+		rules: {
+			email: {
+				required: true,
+				email: true
+			},
+			password: "required",
+				   confirmPassword: {
+						required: true,
+						equalTo: "#password"
+						
+					},
+					
+					
+		},
+		messages: {
+			email: {
+				required: "please enter your email",
+				email: "please enter a valid email address"
+			},
+			
+			password: "please enter your password",
+			
+			confirmPassword: {
+				required: "please Confirm Password",
+				equalTo: "Confirm Password does not match"
+			},
+
+		}
+	});
+	
+});

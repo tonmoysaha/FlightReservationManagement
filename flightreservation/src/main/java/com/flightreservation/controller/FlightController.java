@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,10 +25,15 @@ public class FlightController {
 	@Autowired
 	private FlightRepository flightRepository;
 
+	@GetMapping("/findFlights")
+	public String findFlightPage() {
+		return "findFlights";
+		
+	}
 	
 	@RequestMapping(value = "/findFlights", method = RequestMethod.POST)
 	public String findFlights(@RequestParam("form") String form, @RequestParam("to") String to,
-			@RequestParam("departureDate") @DateTimeFormat(pattern = "MM-dd-yyyy") Date departureDate, ModelMap map) {
+			@RequestParam("departureDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date departureDate, ModelMap map) {
 		
 		Logger.info("inside findFlights() From: "+form+" to: "+to+" departureDate: "+ departureDate);
 		
@@ -38,6 +44,8 @@ public class FlightController {
 		return "displayFilghts";
 
 	}
+	
+	
 	
 	@RequestMapping("/admin/showaddflight")
 	public String showAddFlightPage() {

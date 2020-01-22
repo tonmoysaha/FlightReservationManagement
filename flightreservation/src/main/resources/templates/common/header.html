@@ -10,22 +10,39 @@
 <!-- Bootstrap core CSS -->
 <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
 	rel="stylesheet">
-<!-- Custom styles for this template -->
+<link th:src="@{/vendor/bootstrap/css/bootstrap.css}" rel="stylesheet">
+
 <link th:href="@{/css/scrolling-nav.css}" rel="stylesheet">
-<script type="text/javascript" th:src="@{js/jquery-3.3.1.min.js}" ></script>
-<script type="text/javascript" th:src="@{js/jquery.validate.min.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.js}"></script>
-<script th:src="@{/js/scrolling-nav.js}"></script>
+<link th:href="@{/css/datepicker.css}" rel="stylesheet">
+
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/scrolling-nav.js}"></script>
+<script type="text/javascript"
+	th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript"
+	th:src="@{/vendor/bootstrap/js/bootstrap.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-datepicker.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
+
 
 <style type="text/css">
 .error {
-    color:red;
+	color: red;
 }
+
 .valid {
-    color:green;
+	color: green;
 }
 </style>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$('.datepicker').datepicker({
+        format: 'dd/mm/yyyy'
+    });
+});
+        </script>
 </head>
 
 <body id="page-top">
@@ -43,16 +60,28 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
+						<!-- Admin -->
+
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="#findFlights" sec:authorize="hasRole('USER')">Find
-								Flights</a></li>
+							th:href="@{/admin/showaddflight}"
+							sec:authorize="hasRole('ADMIN')">Add Flights</a></li>
+
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="admin/showaddflight" sec:authorize="hasRole('ADMIN')">Add
+							sec:authorize="hasRole('ADMIN')" th:href="@{/flightDashBoard}">Flight
+								DashBoard</a></li>
+
+						<!-- User -->
+						<li class="nav-item"><a class="nav-link js-scroll-trigger"
+							th:href="@{/findFlights}" sec:authorize="hasRole('USER')">Find
 								Flights</a></li>
+
+						<!-- Anonymus -->
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
 							sec:authorize="isAnonymous()" href="#about">ABOUT</a></li>
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
 							sec:authorize="isAnonymous()" th:href="@{/login}">Sign/SignUp</a></li>
+
+						<!-- Everyone -->
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
 							sec:authorize="isAuthenticated()" th:href="@{/logout}">logout</a></li>
 					</ul>
@@ -60,6 +89,6 @@
 			</div>
 		</nav>
 	</div>
-	
+
 </body>
 </html>

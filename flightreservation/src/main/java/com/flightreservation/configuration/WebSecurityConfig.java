@@ -20,8 +20,8 @@ import com.flightreservation.serviceImpl.UserSecurityServiceImpl;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private static final String[] PUBLIC_URLS = {"/", "/login", "/registerUser", "/findFlights", "/vendor/**", "/index",
-			"/css/**", "/image/**", "/reservations/**" , "/js/**"};
+	private static final String[] PUBLIC_URLS = {"/", "/login", "/registerUser", "/findFlights", "/index",
+			 "/reservations/**"};
 
 	private static final String SALT = "salt";
 	
@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**");
+        web.ignoring().antMatchers("/vendor/**","/js/**","/image/**","/css/**");
     }
 
 

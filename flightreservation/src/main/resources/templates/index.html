@@ -14,41 +14,6 @@
 			<p class="lead">Search your flight for your destination place</p>
 		</div>
 	</header>
-	<!-- Find Flights -->
-	<section id="findFlights" style="background-color: gray;"
-		sec:authorize="hasRole('USER')">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 mx-auto">
-					<h2>Find Flights</h2>
-					<form action="findFlights" method="post">
-						<div class="row" style="margin-top: 10%; margin-left: 25px;">
-
-							<div class="col-xs-2">
-								<b><label for="from">From: </label></b> <input type="text"
-									name="form" />
-							</div>
-
-							&nbsp;&nbsp;
-							<div class="col-xs-2">
-								<b><label for="to">To: </label></b> <input type="text" name="to" />
-							</div>
-							&nbsp;&nbsp;
-							<div class="col-xs-2">
-								<b><label for="to">Departure Date: </label></b> <input
-									type="text" name="departureDate" />
-							</div>
-
-							<div class="col-xs-2">
-								<label></label> <input type="submit"
-									style="color: green; font-weight: bold;" value="submit" />
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
 <footer th:replace="common/footer :: common-footer" style="margin-top: 2%;"></footer>
 </body>
 
