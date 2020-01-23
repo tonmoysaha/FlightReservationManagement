@@ -12,7 +12,7 @@
 			<h1 class="login-title">Flight Registration panel</h1>
 		</div>
 		<div class="flight_form" style="width: 90%;">
-
+		<form th:action="@{/admin/addFlight}" method="post">
 			<div class="form-group">
 				<div class="row">
 					<label class="col-sm-2 ">Flight Number</label>
@@ -63,7 +63,7 @@
 					<label class="col-sm-2 control-label">Date Of Departure</label>
 
 					<div class="col-sm-6">
-						<input name="dateOfDeparture" autocomplete="off"
+						<input name="dateOfDepartures" autocomplete="off"
 							class="form-control datepicker" required="required" />
 					</div>
 				</div>
@@ -75,22 +75,23 @@
 						Time</label>
 
 					<div class="col-sm-6 ">
-						<input name="estimatedDepartureTime" autocomplete="off"
-							class="form-control datepicker" required="required" />
+						<input name="estimatedDepartureTimefortrable" autocomplete="off"
+							class="form-control datepicke2" required="required" />
 					</div>
 				</div>
 			</div>
 
 			<div class="row  center-button mt-2">
 				<div class="col-2">
-					<a href="/add"> <input type="button" class="btn btn-primary btn-md"
-						value="Add Flight" name="save" /></a>
+					 <input type="submit" class="btn btn-primary btn-md"
+						value="Add Flight" name="save" />
 				</div>
 
 				<div class="col-2">
 					<a th:href="@{/}" class="btn btn-primary btn-md">cancel</a>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 
