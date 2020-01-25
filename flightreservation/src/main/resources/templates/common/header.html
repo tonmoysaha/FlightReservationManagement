@@ -11,16 +11,20 @@
 <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
 	rel="stylesheet">
 <link th:src="@{/vendor/bootstrap/css/bootstrap.css}" rel="stylesheet">
-
 <link th:href="@{/css/scrolling-nav.css}" rel="stylesheet">
 <link th:href="@{/css/datepicker.css}" rel="stylesheet">
+<link th:href="@{/css/jquery.datetimepicker.css}" rel="stylesheet">
 
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
 <script type="text/javascript" th:src="@{/js/scrolling-nav.js}"></script>
+<script type="text/javascript" th:src="@{/js/karma.conf.js}"></script>
+
 <script type="text/javascript"
 	th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	th:src="@{/vendor/bootstrap/js/bootstrap.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script type="text/javascript" th:src="@{/js/jquery.datetimepicker.js}"></script>
 <script type="text/javascript" th:src="@{/js/bootstrap-datepicker.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
 
@@ -36,15 +40,18 @@
 </style>
 
 <script type="text/javascript">
+	$(document).ready(function() {
+		$('.datepicker').datepicker({
+			format : 'dd/mm/yyyy'
+		});
+		
+		$('#datetimepicker').datetimepicker({formatTime:"h:i a",
+		    step:60});
+	});
+	
 
-$(document).ready(function() {
-	$('.datepicker').datepicker({
-        format: 'dd/mm/yyyy'
-    });
-	$('.datepicke2').datepicker('getDate') / 1000;
-    
-});
-        </script>
+</script>
+
 </head>
 
 <body id="page-top">
