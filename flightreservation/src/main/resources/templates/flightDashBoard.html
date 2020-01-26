@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+<head th:replace="common/header :: common-header" />
+
+<body>
+	<div th:replace="common/header :: navbar"></div>
+		<div class="table-responsive">
+		<div class="text-center" style="padding: 3%; color: black; background-color: white;">
+		<h1>Available Flight List</h1>
+		</div>
+			<table id="myTable"
+				class="table table-bordered table-hover table-striped">
+				<thead>
+					<tr>
+						<th>Flight Number</th>
+						<th>Operating Airlines</th>
+						<th>Departure City</th>
+						<th>Arrival City</th>
+						<th>Date Of Departure</th>
+						<th>Estimated Departure Time</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-th-each="flight : ${flightList}">
+						<td th:text="${flight.flightNumber}"></td>
+						<td th:text="${flight.operatingAirlines}"></td>
+						<td th:text="${flight.departureCity}"></td>
+						<td th:text="${flight.arrivalCity}"></td>
+						<td th:text="${flight.dateOfDeparture}"></td>
+						<td th:text="${flight.estimatedDepartureTime}"></td>
+						<td>
+						<a
+							th:href="@{/updateFlight?id=}+${flight.id}"><span
+								class="glyphicon glyphicon-info-sign"></span> </a>
+								<a
+							th:href="@{/deleteFlight?id=}+${flight.id}"><span
+								class="glyphicon glyphicon-info-sign"></span> </a>
+								</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#myTable').DataTable();
+		});
+	</script>
+</body>
+<footer th:replace="common/footer :: common-footer" style="margin-top: 3%; "></footer>
+</html>

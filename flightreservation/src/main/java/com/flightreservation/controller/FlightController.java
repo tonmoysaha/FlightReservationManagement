@@ -17,12 +17,14 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.flightreservation.entity.Flight;
 import com.flightreservation.repository.FlightRepository;
+import com.flightreservation.service.FlightService;
 
 @Controller
 public class FlightController {
@@ -31,6 +33,9 @@ public class FlightController {
 
 	@Autowired
 	private FlightRepository flightRepository;
+	
+	@Autowired
+	private FlightService flightService;
 
 	@GetMapping("/findFlights")
 	public String findFlightPage() {
@@ -59,19 +64,24 @@ public class FlightController {
 		return "showAddFlightPage";
 
 	}
+	
+	@RequestMapping("/admin/flightlist")
+	public String flightList(ModelMap map) {
+		List<Flight> flightList = flightService.flightList();
+		map.addAttribute("flightList", flightList);
+		return "flightDashBoard";
+	}
 
-	@RequestMapping("/admin/addFlight")
-	public String addFlights(@ModelAttribute("flight") Flight flight,@RequestParam("dateOfDepartures") String date, @RequestParam("estimatedDepartureTimefortrable") String timstamp) throws ParseException {
+	@PostMapping("/admin/addFlight")
+	public String addFlights(@ModelAttribute("flight") Flight flight,@RequestParam("dateOfDepartures") String date) throws ParseException {
 	    //same format with jquery formate with defferent version in java for java or jquery for jquery
 	    Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(date);  
-	    
-	    Date timestap=new SimpleDateFormat("dd/MM/yyyy").parse(timstamp);  
-	    Timestamp ts=new Timestamp(timestap.getTime());  
-        flight.setEstimatedDepartureTime(ts);
 	    flight.setDateOfDeparture(date1);
+	  
 		flightRepository.save(flight);
 
-		return "flightDashBoard";
+		return "redirect:/admin/flightlist";
 
 	}
+	 
 }
