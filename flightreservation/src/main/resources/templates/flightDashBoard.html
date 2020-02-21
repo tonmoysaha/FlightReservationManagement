@@ -7,10 +7,11 @@
 
 <body>
 	<div th:replace="common/header :: navbar"></div>
-		<div class="table-responsive">
-		<div class="text-center" style="padding: 3%; color: black; background-color: white;">
+	<div></div>
+	<div class="text-center" style="padding: 3%; background-color:#542a0c; color: white;">
 		<h1>Available Flight List</h1>
 		</div>
+		<div class="table-responsive" style="padding: 1%; background-color: ">
 			<table id="myTable"
 				class="table table-bordered table-hover table-striped">
 				<thead>
@@ -21,7 +22,7 @@
 						<th>Arrival City</th>
 						<th>Date Of Departure</th>
 						<th>Estimated Departure Time</th>
-						<th></th>
+						<th>Operations</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,11 +35,9 @@
 						<td th:text="${flight.estimatedDepartureTime}"></td>
 						<td>
 						<a
-							th:href="@{/updateFlight?id=}+${flight.id}"><span
-								class="glyphicon glyphicon-info-sign"></span> </a>
-								<a
-							th:href="@{/deleteFlight?id=}+${flight.id}"><span
-								class="glyphicon glyphicon-info-sign"></span> </a>
+							th:href="@{/admin/updateFlight?id=}+${flight.id}">Update </a>
+								&nbsp; &nbsp; <a
+							th:href="@{/admin/deleteFlight?id=}+${flight.id}">Delete</a>
 								</td>
 
 					</tr>

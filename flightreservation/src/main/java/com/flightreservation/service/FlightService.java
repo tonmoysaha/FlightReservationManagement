@@ -8,4 +8,8 @@ public interface FlightService {
 
 	List<Flight> flightList();
 
+	Flight findByFlightId(Long flightId);
+
+	void deleteFlight(Long flightId);
+
 }

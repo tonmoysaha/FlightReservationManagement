@@ -21,4 +21,16 @@ public class FlightServiceImpl implements FlightService {
 		return (List<Flight>) flightRepository.findAll();
 	}
 
+	@Override
+	public Flight findByFlightId(Long flightId) {
+		// TODO Auto-generated method stub
+		return flightRepository.findById(flightId).orElse(null);
+	}
+
+	@Override
+	public void deleteFlight(Long flightId) {
+		flightRepository.deleteById(flightId);
+		
+	}
+
 }
