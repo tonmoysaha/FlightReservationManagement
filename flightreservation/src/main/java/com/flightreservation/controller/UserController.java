@@ -74,6 +74,7 @@ public class UserController {
 			return "regPage";
 		}
 		user.setPassword(encoder.encode(user.getPassword()));
+		user.setSecurityPin(encoder.encode(user.getSecurityPin()));
 		Role role = new Role();
 		role.setRoleId((long) 2);
 		role.setRoleName("ROLE_USER");

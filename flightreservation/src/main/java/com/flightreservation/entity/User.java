@@ -21,6 +21,7 @@ public class User extends AbstractEntity implements UserDetails {
 	private String userName;
 	private String email;
 	private String password;
+	private String securityPin;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = {@JoinColumn(name  = "user_id")},
@@ -61,6 +62,14 @@ public class User extends AbstractEntity implements UserDetails {
 
 	public String getPassword() {
 		return password;
+	}
+
+	public String getSecurityPin() {
+		return securityPin;
+	}
+
+	public void setSecurityPin(String securityPin) {
+		this.securityPin = securityPin;
 	}
 
 	public void setPassword(String password) {
