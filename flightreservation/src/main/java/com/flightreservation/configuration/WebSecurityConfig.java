@@ -32,18 +32,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder(12, new SecureRandom(SALT.getBytes()));
 	}
 	
-	private AuthenticationManager authenticationManager;
-	
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/vendor/**","/js/**","/image/**","/css/**");
     }
 
     private static final String[] PUBLIC_URLS = {"/", "/login", "/registerUser", "/findFlights", "/index",
-	 "/reservations/**"};
+	 "/reservations/**", "/verify/email"};
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(PUBLIC_URLS).permitAll().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers(PUBLIC_URLS).permitAll().anyRequest().authenticated().and().httpBasic();
 		
 		http.csrf().disable().cors().disable() .formLogin().failureUrl("/login?error").defaultSuccessUrl("/")
 		.loginPage("/login").usernameParameter("email").permitAll().and()

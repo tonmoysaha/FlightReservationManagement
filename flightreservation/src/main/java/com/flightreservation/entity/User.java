@@ -9,9 +9,15 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.flightreservation.validation.PasswoedConfirmed;
+import com.flightreservation.validation.UniqueUserName;
 
 @Entity
 public class User extends AbstractEntity implements UserDetails {
@@ -19,8 +25,11 @@ public class User extends AbstractEntity implements UserDetails {
 	private String fristName;
 	private String lastName;
 	private String userName;
+	
 	private String email;
 	private String password;
+	private String confirmPassword;
+	private boolean verified;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = {@JoinColumn(name  = "user_id")},
@@ -75,6 +84,15 @@ public class User extends AbstractEntity implements UserDetails {
 		this.roles = roles;
 	}
 
+	
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
 	@Override
 	public String toString() {
 		return "User [fristName=" + fristName + ", lastName=" + lastName + ", userName=" + userName + ", email=" + email
@@ -118,5 +136,15 @@ public class User extends AbstractEntity implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
+	public boolean isVerified() {
+		return verified;
+	}
+
+	public void setVerified(boolean verified) {
+		this.verified = verified;
+	}
+	
+	
 
 }

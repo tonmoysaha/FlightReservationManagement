@@ -7,5 +7,7 @@ import com.flightreservation.entity.User;
 
 public interface UserService {
 	void save(User user, Set<Role> roles);
+	User findByEmail(String email);
+	User updateUser(User user);
 
 }

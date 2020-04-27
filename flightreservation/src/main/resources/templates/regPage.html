@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-	
+
 <head th:replace="common/header :: common-header" />
 
 <body>
 	<div th:replace="common/header :: navbar"></div>
-	
+
 	<div class="container" style="margin-top: 5%;">
 		<div style="background-color: #92a8d1; padding: 2%;">
 			<h2 class="text-center">
@@ -15,70 +15,80 @@
 		</div>
 		<hr />
 		<div style="margin-left: 25%;">
-			<form class="well form-horizontal col-xs-8" action="registerUser"
-				method="post" id="formvalidate">
-				<div th:if="${userExist}" class="alert alert-danger">This Email Already Exist. Try Another One</div>
-				
-			<div class="form-group">
-				<div class="row">
-					<label class="col-sm-3 control-label">Frist Name</label>
+			<form class="well form-horizontal col-xs-8" th:object="${user}"
+				th:action="@{/registerUser}" method="post" id="formvalidate">
+				<div th:if="${userExist}" class="alert alert-danger">This
+					Email Already Exist. Try Another One</div>
 
-					<div class="col-sm-6">
-						<input name="fristName" class="form-control"
-							required="required" />
+				<div th:if="${param.success}">
+					<div class="alert alert-success">
+						Registration complete! , you can now <a href="/login"
+							th:href="@{/login}">login</a>
 					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<div class="row">
-					<label class="col-sm-3 control-label">Last Name</label>
+				<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+					<ul th:if="${#fields.hasErrors('*')}">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input
+							is incorrect</li>
+					</ul>
+				</div>
 
-					<div class="col-sm-6">
-						<input name="lastName" class="form-control"
-							required="required" />
+				<div class="form-group">
+					<div class="row">
+						<label class="col-sm-3 control-label">Frist Name</label>
+
+						<div class="col-sm-6">
+							<input name="fristName" class="form-control"
+								th:errorclass="is-invalid" required="required" />
+						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="row">
-					<label class="col-sm-3 control-label">User Name</label>
+				<div class="form-group">
+					<div class="row">
+						<label class="col-sm-3 control-label">Last Name</label>
 
-					<div class="col-sm-6">
-						<input name="userName" class="form-control"
-							required="required" />
+						<div class="col-sm-6">
+							<input name="lastName" class="form-control" required="required" />
+						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="row">
-					<label class="col-sm-3 control-label">Email</label>
 
-					<div class="col-sm-6">
-						<input name="email" class="form-control"
-							required="required" />
+				<div class="form-group">
+					<div class="row">
+						<label class="col-sm-3 control-label">User Name</label>
+
+						<div class="col-sm-6">
+							<input name="userName"
+								class="form-control" required="required" />
+						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="row">
-					<label class="col-sm-3 control-label">Password</label>
 
-					<div class="col-sm-6">
-						<input name="password" class="form-control"
-							required="required" />
+				<div class="form-group">
+					<div class="row">
+						<label class="col-sm-3 control-label">Email</label>
+
+						<div class="col-sm-6">
+							<input name="email" class="form-control" required="required" />
+						</div>
 					</div>
 				</div>
-			</div>
-			
+
+				<div class="form-group">
+					<div class="row">
+						<label class="col-sm-3 control-label">Password</label>
+
+						<div class="col-sm-6">
+							<input name="password" class="form-control" required="required" />
+						</div>
+					</div>
+				</div>
+
 				<div style="margin-left: 250px;">
 					<button type="submit" class="btn btn-primary">
 						<i class="glyphicon glyphicon-arrow-right"></i> Sign in
 					</button>
 				</div>
-
 			</form>
 
 		</div>
