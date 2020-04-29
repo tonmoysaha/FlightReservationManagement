@@ -11,7 +11,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.flightreservation.serviceImpl.UserSecurityServiceImpl;
@@ -26,6 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private UserSecurityServiceImpl userSecurityServiceImpl;
+	
+	@Autowired
+	private PersistentTokenRepository tokenRepository;
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -48,10 +53,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll()
 		.and()
-		.rememberMe();
+		.rememberMe().key("remember-me-key").tokenRepository(tokenRepository);
 	}
 
 	
+	@Override
+	protected UserDetailsService userDetailsService() {
+		return this.userSecurityServiceImpl;
+	}
+
 	@Autowired
 	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userSecurityServiceImpl).passwordEncoder(passwordEncoder());
