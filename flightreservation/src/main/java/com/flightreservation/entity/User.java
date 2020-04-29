@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -21,6 +22,8 @@ public class User extends AbstractEntity implements UserDetails {
 	private String userName;
 	private String email;
 	private String password;
+	@NonNull
+	private boolean tfoEnable;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = {@JoinColumn(name  = "user_id")},
@@ -73,6 +76,14 @@ public class User extends AbstractEntity implements UserDetails {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public boolean isTfoEnable() {
+		return tfoEnable;
+	}
+
+	public void setTfoEnable(boolean tfoEnable) {
+		this.tfoEnable = tfoEnable;
 	}
 
 	@Override
